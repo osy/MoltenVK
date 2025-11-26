@@ -47,10 +47,10 @@ id<MTLTexture> MVKImagePlane::getMTLTexture() {
         MVKImageMemoryBinding* memoryBinding = getMemoryBinding();
 		MVKDeviceMemory* dvcMem = memoryBinding->_deviceMemory;
 
-        if (_image->_is2DViewOn3DImageCompatible && !dvcMem->ensureMTLHeap()) {
+        if (_image->_is2DViewOn3DImageCompatible && !dvcMem->getMTLHeap()) {
             MVKAssert(0, "Creating a 2D view of a 3D texture currently requires a placement heap, which is not available.");
         }
-        if (_image->_isBlockTexelViewCompatible && !dvcMem->ensureMTLHeap()) {
+        if (_image->_isBlockTexelViewCompatible && !dvcMem->getMTLHeap()) {
             MVKAssert(0, "Creating an uncompressed view of a compressed texture currently requires a placement heap, which is not available.");
         }
 
